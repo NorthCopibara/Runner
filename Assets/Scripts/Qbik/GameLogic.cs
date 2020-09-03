@@ -17,6 +17,7 @@ namespace Qbik.Game
         private float defoultParalacsSpeed;
         private float defoultDogAnimSpeed;
         private int health;
+        private int maxHealth;
 
         private int xPoints = 1;
         private int pointsCount;
@@ -31,6 +32,7 @@ namespace Qbik.Game
             points = model.points;
 
             health = model.health;
+            maxHealth = health;
             defoultParalacsSpeed = model.paralacsSpeed;
             defoultDogAnimSpeed = model.animDogSpeed;
 
@@ -46,6 +48,7 @@ namespace Qbik.Game
 
             Message.AddListener("MissClick", MissClick);
             Message.AddListener("GoodClick", GoodClick);
+            Message.AddListener("AddHealth", AddHealth);
             Message.AddListener("Death", Death);
 
             tuch.StartTuch(model.timeNextCheckMax, model.timeNextCheckMin,
@@ -117,6 +120,20 @@ namespace Qbik.Game
             car.SetState(health, false);
         }
 
+        public void AddHealth() 
+        {
+            if (health == maxHealth)
+                pointsCount += 1000;
+            else
+            {
+                health++;
+                paralacs.SetSpeed(defoultParalacsSpeed + 5 * health);
+                dog.SetAnimSpeed(defoultDogAnimSpeed + 0.3f * health);
+                points.SetHealthImage(health - 1);
+                car.SetState(health, true);
+            }
+        }
+
         public void Death() 
         {
             Time.timeScale = 0;
@@ -129,8 +146,13 @@ namespace Qbik.Game
         {
             ControlSystem.fixedUpdate -= TimePoint;
 
+            dog.Destroy();
+            car.Destroy();
+            paralacs.Destroy();
+
             Message.RemoveListener("MissClick", MissClick);
             Message.RemoveListener("GoodClick", GoodClick);
+            Message.RemoveListener("AddHealth", AddHealth);
             Message.RemoveListener("Death", Death);
         }
     }

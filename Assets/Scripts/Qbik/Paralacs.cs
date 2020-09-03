@@ -5,34 +5,26 @@ using UnityEngine;
 
 namespace Qbik.Game
 {
-    public class Paralacs : MonoBehaviour
+    public class Paralacs
     {
-        [SerializeField] private List<GameObject> tiles;
-        [SerializeField] private float tagPosition;
-
         private List<Rigidbody> rb = new List<Rigidbody>();
-
         private float speed;
 
-        private void Awake()
-        {
-            Message.AddListener("GetParalacs", GetView);
-        }
+        private ParalacsView view;
 
-        public void GetView()
+        public Paralacs(ParalacsView view) 
         {
-            Message.RemoveListener("GetParalacs", GetView);
-            MessageClass<Paralacs>.SendEvent("ParalacsView", this);
+            this.view = view;
         }
 
         public void Init(float _speed) 
         {
             speed = _speed;
 
-            for (int i = 0; i < tiles.Count; i++)
+            for (int i = 0; i < view.tiles.Count; i++)
             {
                 Rigidbody rb;
-                rb = tiles[i].GetComponent<Rigidbody>();
+                rb = view.tiles[i].GetComponent<Rigidbody>();
                 this.rb.Add(rb);
             }
             Move();
@@ -48,11 +40,11 @@ namespace Qbik.Game
         private void FixedUpdateParalacs()
         {
             Move();
-            foreach (GameObject x in tiles)
+            foreach (GameObject x in view.tiles)
             {
-                if (x.transform.localPosition.z < -tagPosition * 2)
+                if (x.transform.localPosition.z < -view.tagPosition * 2)
                 {
-                    x.transform.localPosition = new Vector3(x.transform.localPosition.x, x.transform.localPosition.y, tagPosition * 2 * (tiles.Count - 1));
+                    x.transform.localPosition = new Vector3(x.transform.localPosition.x, x.transform.localPosition.y, view.tagPosition * 2 * (view.tiles.Count - 1));
                 }
             }
         }
@@ -75,7 +67,7 @@ namespace Qbik.Game
             }
         }
 
-        private void OnDestroy()
+        public void Destroy()
         {
             ControlSystem.fixedUpdate -= FixedUpdateParalacs;
         }

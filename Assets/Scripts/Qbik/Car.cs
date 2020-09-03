@@ -4,30 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Qbik.Game {
-    public class Car : MonoBehaviour
+    public class Car 
     {
-        [SerializeField] private float speed;
+        private float speed = 5;
         private float dZ = 5;
         private float carNextPosition;
 
         private bool direction;
 
-        private void Awake()
-        {
-            Message.AddListener("GetCar", GetView);
-        }
+        private GameObject car;
 
-        public void GetView()
+        public Car(GameObject car) 
         {
-            Message.RemoveListener("GetCar", GetView);
-            MessageClass<Car>.SendEvent("CarView", this);
+            this.car = car;
         }
 
         public void Init(int health)
         {
             ControlSystem.fixedUpdate += FixedUpdateCar;
             carNextPosition = - dZ * health; //Привязать к жизням //Дефолтное расположение
-            transform.position = new Vector3(transform.position.x, transform.position.y, carNextPosition);
+            car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, carNextPosition);
         }
 
         public void SetCarSpeed(float speed) 
@@ -45,29 +41,21 @@ namespace Qbik.Game {
         {
             if (direction)
             {
-                if (transform.position.z >= carNextPosition)
+                if (car.transform.position.z >= carNextPosition)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.deltaTime);
+                    car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, car.transform.position.z - speed * Time.deltaTime);
                 }
             }
             else 
             {
-                if (transform.position.z <= carNextPosition)
+                if (car.transform.position.z <= carNextPosition)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
+                    car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, car.transform.position.z + speed * Time.deltaTime);
                 }
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.transform.tag.Equals("Dog"))
-            {
-                Message.Send("Death");
-            }
-        }
-
-        private void OnDestroy()
+        public void Destroy()
         {
             ControlSystem.fixedUpdate -= FixedUpdateCar;
         }

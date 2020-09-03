@@ -33,17 +33,8 @@ namespace Qbik
             Message.RemoveListener("StartGame", StartGame);
             gameModel = new GameModel();
 
-            Message.AddListener<MessageClass<Dog>>("DogView", InitDog);
-            Message.Send("GetDog");
-
-            Message.AddListener<MessageClass<Paralacs>>("ParalacsView", InitParalacs);
-            Message.Send("GetParalacs");
-
             Message.AddListener<MessageClass<Tuch>>("TuchView", InitTuch);
             Message.Send("GetTuch");
-
-            Message.AddListener<MessageClass<Car>>("CarView", InitCar);
-            Message.Send("GetCar");
 
             Message.AddListener<MessageClass<GameData>>("SetupGame", InitSetupGame);
             Message.Send("GetSetup");
@@ -68,28 +59,10 @@ namespace Qbik
             return true;
         }
 
-        public void InitCar(MessageClass<Car> car) 
-        {
-            Message.RemoveListener<MessageClass<Car>>("CarView", InitCar);
-            gameModel.car = car.param;
-        }
-
         public void InitTuch(MessageClass<Tuch> tuch) 
         {
             Message.RemoveListener<MessageClass<Tuch>>("TuchView", InitTuch);
             gameModel.tuch = tuch.param;
-        }
-
-        public void InitDog(MessageClass<Dog> dog) 
-        {
-            Message.RemoveListener<MessageClass<Dog>>("DogView", InitDog);
-            gameModel.dog = dog.param;
-        }
-
-        public void InitParalacs(MessageClass<Paralacs> paralacs)
-        {
-            Message.RemoveListener<MessageClass<Paralacs>>("ParalacsView", InitParalacs);
-            gameModel.paralacs = paralacs.param;
         }
 
         public void InitSetupGame(MessageClass<GameData> setupData)
@@ -97,7 +70,11 @@ namespace Qbik
             gameModel.animDogSpeed = setupData.param.defoultSpeedAnimDog;
             gameModel.paralacsSpeed = setupData.param.defoultSpeedParalacs;
             gameModel.health = setupData.param.health;
+
             gameModel.points = setupData.param.points;
+            gameModel.car = setupData.param.car;
+            gameModel.paralacs = setupData.param.paralacs;
+            gameModel.dog = setupData.param.dog;
 
             gameModel.timeNextCheckMax = setupData.param.timeNextCheckMax;
             gameModel.timeNextCheckMin = setupData.param.timeNextCheckMin;

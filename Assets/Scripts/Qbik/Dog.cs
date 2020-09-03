@@ -3,20 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dog : MonoBehaviour
+public class Dog 
 {
     Rigidbody rbDog;
     Animator animDog;
 
-    private void Awake()
-    {
-        Message.AddListener("GetDog", GetView);
-    }
+    private GameObject dog;
 
-    public void GetView()
+    public Dog(GameObject dog) 
     {
-        Message.RemoveListener("GetDog", GetView);
-        MessageClass<Dog>.SendEvent("DogView", this);
+        this.dog = dog;
     }
 
     public void Init(float speedAnim) 
@@ -24,15 +20,15 @@ public class Dog : MonoBehaviour
         Message.AddListener("JumpDog", Jump);
         Message.AddListener("FailDog", Fail);
 
-        rbDog = GetComponent<Rigidbody>();
-        animDog = GetComponent<Animator>();
+        rbDog = dog.GetComponent<Rigidbody>();
+        animDog = dog.GetComponent<Animator>();
         SetAnimSpeed(speedAnim);
         animDog.SetTrigger("Run");
     }
 
     public void Jump() 
     {
-        rbDog.AddForce(transform.up * 40);
+        rbDog.AddForce(dog.transform.up * 40);
         animDog.SetTrigger("Jump");
     }
 
@@ -46,7 +42,7 @@ public class Dog : MonoBehaviour
         animDog.speed = speed;
     }
 
-    private void OnDestroy()
+    public void Destroy()
     {
         Message.RemoveListener("JumpDog", Jump); 
         Message.RemoveListener("FailDog", Fail);

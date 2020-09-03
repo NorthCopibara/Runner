@@ -76,11 +76,13 @@
     <Compile Include="Assets\MyAssets\Simple Character Pack\Demo\Script\CharacterPreviewController.cs" />
     <Compile Include="Assets\Scripts\Qbik\Barriers.cs" />
     <Compile Include="Assets\Scripts\Qbik\Car.cs" />
+    <Compile Include="Assets\Scripts\Qbik\CarView.cs" />
     <Compile Include="Assets\Scripts\Qbik\ControlSystem.cs" />
     <Compile Include="Assets\Scripts\Qbik\Dog.cs" />
     <Compile Include="Assets\Scripts\Qbik\GameLogic.cs" />
     <Compile Include="Assets\Scripts\Qbik\GameModel.cs" />
     <Compile Include="Assets\Scripts\Qbik\Ground.cs" />
+    <Compile Include="Assets\Scripts\Qbik\LightningView.cs" />
     <Compile Include="Assets\Scripts\Qbik\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Qbik\Messager\Events.cs" />
     <Compile Include="Assets\Scripts\Qbik\Messager\GameEventListener.cs" />
@@ -88,8 +90,10 @@
     <Compile Include="Assets\Scripts\Qbik\Messager\Message.cs" />
     <Compile Include="Assets\Scripts\Qbik\Messager\MessageClass.cs" />
     <Compile Include="Assets\Scripts\Qbik\Paralacs.cs" />
+    <Compile Include="Assets\Scripts\Qbik\ParalacsView.cs" />
     <Compile Include="Assets\Scripts\Qbik\Points.cs" />
     <Compile Include="Assets\Scripts\Qbik\SetupGame.cs" />
+    <Compile Include="Assets\Scripts\Qbik\SpawnLighting.cs" />
     <Compile Include="Assets\Scripts\Qbik\Tuch.cs" />
     <Compile Include="Assets\Scripts\Qbik\UI\UIManager.cs" />
     <None Include="Assets\MyAssets\FX Mega Pack\Shaders\Particle AddAlphaBlended.shader" />
@@ -104,6 +108,9 @@
     <None Include="Assets\MyAssets\Simple Character Pack\Shader\ToonBasicOutline.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
@@ -123,20 +130,17 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/Project/Runner/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>E:/Project/Runner/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/star/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
