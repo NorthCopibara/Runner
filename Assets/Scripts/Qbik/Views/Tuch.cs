@@ -102,6 +102,13 @@ namespace Qbik.Game.GUI
             else
             {
                 Message.Send("GoodClick");
+
+                if (timeTuchCheckMin > 0.3f)
+                    timeTuchCheckMin -= 0.01f;
+                
+                if (timeTuchCheckMax > 0.7f)
+                    timeTuchCheckMax -= 0.01f;
+                    
                 leftButtonIsActive = false;
                 checkLeft.SetActive(false);
                 bangLeft.SetActive(true);
@@ -116,6 +123,13 @@ namespace Qbik.Game.GUI
             else 
             {
                 Message.Send("GoodClick");
+
+                if (timeTuchCheckMin > 0.3f)
+                    timeTuchCheckMin -= 0.01f;
+
+                if (timeTuchCheckMax > 0.7f)
+                    timeTuchCheckMax -= 0.01f;
+
                 rightButtonIsActive = false;
                 checkRight.SetActive(false);
                 bangRight.SetActive(true);

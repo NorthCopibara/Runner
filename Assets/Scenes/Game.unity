@@ -12043,9 +12043,9 @@ MonoBehaviour:
   health: 4
   defoultSpeedParalacs: 10
   defoultSpeedAnimDog: 2
-  timeNextCheckMin: 2
-  timeNextCheckMax: 4
-  timeTuchCheckMin: 0.5
+  timeNextCheckMin: 0.3
+  timeNextCheckMax: 1
+  timeTuchCheckMin: 0.7
   timeTuchCheckMax: 1
   textPoints: {fileID: 2094264035}
   textX: {fileID: 1655521611}
